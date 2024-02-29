@@ -17,27 +17,27 @@ public class MercadoScrap
             HtmlDocument document = web.Load(url);
 
             // Encontra o elemento que contém o preço do primeiro produto            
-            HtmlNode firstProductPriceNode = document.DocumentNode.SelectSingleNode("//span[@class='andes-money-amount__fraction']");
-            Console.WriteLine(firstProductPriceNode.InnerText);
+            HtmlNode MercadoPrecoNode = document.DocumentNode.SelectSingleNode("//span[@class='andes-money-amount__fraction']");
+            Console.WriteLine(MercadoPrecoNode.InnerText);
 
             // Verifica se o elemento foi encontrado
-            if (firstProductPriceNode != null)
+            if (MercadoPrecoNode != null)
             {
                 // Obtém o preço do primeiro produto
-                string firstProductPrice = firstProductPriceNode.InnerText.Trim();
+                string MercadoPreco = MercadoPrecoNode.InnerText.Trim();
 
                 // Registra o log com o ID do produto
-                RegistrarLog("0001", "Pedro", DateTime.Now, "Scraping Mercado Livre", "Sucesso", produtoID);
+                MercadoLog("0001", "Pedro", DateTime.Now, "Web Scraping - Mercado Livre", "Sucesso", produtoID);
 
                 // Retorna o preço
-                return firstProductPrice;
+                return MercadoPreco;
             }
             else
             {
                 Console.WriteLine("Preço não encontrado.");
 
                 // Registra o log com o ID do produto
-                RegistrarLog("0001", "Pedro", DateTime.Now, "Scraping Mercado Livre", "Preço não encontrado", produtoID);
+                MercadoLog("0001", "Pedro", DateTime.Now, "Web Scraping - Mercado Livre", "Preço não encontrado", produtoID);
 
                 return null;
             }
@@ -47,13 +47,13 @@ public class MercadoScrap
             Console.WriteLine($"Erro ao acessar a página: {ex.Message}");
 
             // Registra o log com o ID do produto
-            RegistrarLog("0001", "Pedro", DateTime.Now, "Scraping Mercado Livre", $"Erro: {ex.Message}", produtoID);
+            MercadoLog("0001", "Pedro", DateTime.Now, "Web Scraping - Mercado Livre", $"Erro: {ex.Message}", produtoID);
 
             return null;
         }
     }
 
-    private void RegistrarLog(string CodRobot, string UserName, DateTime logDate, string StateDescription, string ResultFeedBack, int ProductID)
+    private void MercadoLog(string CodRobot, string UserName, DateTime logDate, string StateDescription, string ResultFeedBack, int ProductID)
     {
         using (var context = new CrawlerContext())
         {

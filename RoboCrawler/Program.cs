@@ -51,10 +51,14 @@ class Program
                                     WriteLog("0001", "Pedro", DateTime.Now, "API Consulta - 001-site 1.ktempurl.com/api/v1/produto/getall", "Sucesso", produto.Id);
 
                                     MercadoScrap mercadoScraper = new MercadoScrap();
-                                    mercadoScraper.ObterPreco(produto.Nome, produto.Id);
-
+                                    var mercadoLivrePreco = mercadoScraper.ObterPreco(produto.Nome, produto.Id);
+                                    
                                     MagazineScrap magazineScraper = new MagazineScrap();
-                                    magazineScraper.ObterPreco(produto.Nome, produto.Id);
+                                    var magazineLuizaPreco = magazineScraper.ObterPreco(produto.Nome, produto.Id);                                    
+                                    
+                                    var compareReturn =Compare.comparePrice(mercadoLivrePreco, magazineLuizaPreco, produto.Id);
+
+                                    Email.EnviarEmail(produto.Nome, mercadoLivrePreco, produto.Nome, magazineLuizaPreco, compareReturn);
                                 }
                                 
                             }

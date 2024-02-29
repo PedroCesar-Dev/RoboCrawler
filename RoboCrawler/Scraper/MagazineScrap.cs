@@ -25,20 +25,22 @@ public class MagazineScrap
                 if (priceElement != null)
                 {
                     // Obtém o preço do primeiro produto
-                    string firstProductPrice = priceElement.Text;
+                    string MagazinePreco = priceElement.Text;
 
                     // Registra o log com o ID do produto
-                    MagazineLog("0001", "Pedro", DateTime.Now, "Scraping Magazine Luiza", "Sucesso", produtoID);
+                    MagazineLog("0001", "Pedro", DateTime.Now, "Web Scraping - Magazine Luiza", "Sucesso", produtoID);
+
+
 
                     // Retorna o preço
-                    return firstProductPrice;
+                    return MagazinePreco;
                 }
                 else
                 {
                     Console.WriteLine("Preço não encontrado.");
 
                     // Registra o log com o ID do produto
-                    MagazineLog("0001", "Pedro", DateTime.Now, "Scraping Magazine Luiza", "Preço não encontrado", produtoID);
+                    MagazineLog("0001", "Pedro", DateTime.Now, "Web Scraping - Magazine Luiza", "Preço não encontrado", produtoID);
 
                     return null;
                 }
@@ -49,7 +51,7 @@ public class MagazineScrap
             Console.WriteLine($"Erro ao acessar a página: {ex.Message}");
 
             // Registra o log com o ID do produto
-            MagazineLog("0001", "Pedro", DateTime.Now, "Scraping Magazine Luiza", $"Erro: {ex.Message}", produtoID);
+            MagazineLog("0001", "Pedro", DateTime.Now, "Web Scraping Magazine - Luiza", $"Erro: {ex.Message}", produtoID);
 
             return null;
         }
