@@ -3,7 +3,7 @@ using System;
 
 public class MercadoScrap
 {
-    public string ObterPreco(string descricaoProduto, int produtoID)
+    public Scrap ObterPreco(string descricaoProduto, int produtoID)
     {
         // URL da pesquisa no Mercado Livre com base na descrição do produto
         string url = $"https://lista.mercadolivre.com.br/{descricaoProduto}";
@@ -18,19 +18,22 @@ public class MercadoScrap
 
             // Encontra o elemento que contém o preço do primeiro produto            
             HtmlNode MercadoPrecoNode = document.DocumentNode.SelectSingleNode("//span[@class='andes-money-amount__fraction']");
+            HtmlNode firstProductUrlNode = document.DocumentNode.SelectSingleNode("//a[contains(@class, 'ui-search-link__title-card')]");
+            Console.WriteLine(">>>>>>>>>>>" +firstProductUrlNode.GetAttributeValue("href", ""));
             Console.WriteLine(MercadoPrecoNode.InnerText);
 
             // Verifica se o elemento foi encontrado
             if (MercadoPrecoNode != null)
             {
-                // Obtém o preço do primeiro produto
+                Scrap mercado = new Scrap();
                 string MercadoPreco = MercadoPrecoNode.InnerText.Trim();
-
-                // Registra o log com o ID do produto
+                string MercadoLink = firstProductUrlNode.GetAttributeValue("href", "");                
+                mercado.preco = MercadoPreco;
+                mercado.hrefUrl = MercadoLink;
+                
                 MercadoLog("0001", "Pedro", DateTime.Now, "Web Scraping - Mercado Livre", "Sucesso", produtoID);
 
-                // Retorna o preço
-                return MercadoPreco;
+                return mercado;
             }
             else
             {

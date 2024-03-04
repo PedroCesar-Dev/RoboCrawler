@@ -2,6 +2,7 @@
 {
     public static int comparePrice(string Mercado , string Magazine, int id)
     {
+
         char[] arg = { 'R', '$', ' ' }; 
         Mercado = Mercado.Trim(arg);
         Magazine = Magazine.Trim(arg);

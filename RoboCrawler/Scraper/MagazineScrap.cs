@@ -4,7 +4,7 @@ using System;
 
 public class MagazineScrap 
 {
-    public string ObterPreco(string descricaoProduto, int produtoID)
+    public Scrap ObterPreco(string descricaoProduto, int produtoID)
     {
         try
         {
@@ -12,28 +12,24 @@ public class MagazineScrap
             using (IWebDriver driver = new ChromeDriver())
             {
                 // Abre a página
-                driver.Navigate().GoToUrl($"https://www.magazineluiza.com.br/busca/{descricaoProduto}");
-                
-                // Aguarda um tempo fixo para permitir que a página seja carregada (você pode ajustar conforme necessário)
+                driver.Navigate().GoToUrl($"https://www.magazineluiza.com.br/busca/{descricaoProduto}");                               
                 System.Threading.Thread.Sleep(5000);
-
-                // Encontra o elemento que possui o atributo data-testid
                 IWebElement priceElement = driver.FindElement(By.CssSelector("[data-testid='price-value']"));
+                IWebElement urlElement = driver.FindElement(By.CssSelector("[data-testid='product-card-container']"));
                 Console.WriteLine(priceElement.Text);
 
-                // Verifica se o elemento foi encontrado
                 if (priceElement != null)
                 {
-                    // Obtém o preço do primeiro produto
-                    string MagazinePreco = priceElement.Text;
-
-                    // Registra o log com o ID do produto
+                    string Magazine = priceElement.Text; 
+                    Scrap magazine = new Scrap();
+                    magazine.preco = Magazine;
+                    magazine.hrefUrl = urlElement.GetAttribute("href");
                     MagazineLog("0001", "Pedro", DateTime.Now, "Web Scraping - Magazine Luiza", "Sucesso", produtoID);
 
 
 
                     // Retorna o preço
-                    return MagazinePreco;
+                    return magazine;
                 }
                 else
                 {

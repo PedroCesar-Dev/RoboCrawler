@@ -56,9 +56,9 @@ class Program
                                     MagazineScrap magazineScraper = new MagazineScrap();
                                     var magazineLuizaPreco = magazineScraper.ObterPreco(produto.Nome, produto.Id);                                    
                                     
-                                    var compareReturn =Compare.comparePrice(mercadoLivrePreco, magazineLuizaPreco, produto.Id);
+                                    var compareReturn = Compare.comparePrice(mercadoLivrePreco.preco, magazineLuizaPreco, produto.Id);
 
-                                    Email.EnviarEmail(produto.Nome, mercadoLivrePreco, produto.Nome, magazineLuizaPreco, compareReturn);
+                                    Email.EnviarEmail(produto.Nome, mercadoLivrePreco.preco, produto.Nome, magazineLuizaPreco, compareReturn);
                                 }
                                 
                             }
