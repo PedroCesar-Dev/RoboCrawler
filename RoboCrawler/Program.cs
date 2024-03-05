@@ -11,9 +11,12 @@ class Program
         int interval = 300000;
 
         Timer timer = new Timer(verificar, null, 0, interval);
-        
-        Console.WriteLine("Pressione qualquer tecla para sair...");
-        Console.ReadKey();
+
+
+        while (true)
+        {
+            Thread.Sleep(Timeout.Infinite);
+        }
     }
     static async void verificar(object state)
     {
