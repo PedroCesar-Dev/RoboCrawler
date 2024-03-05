@@ -3,7 +3,7 @@ using System;
 
 public class MercadoScrap
 {
-    public Scrap ObterPreco(string descricaoProduto, int produtoID)
+    public ScrapMercado ObterPreco(string descricaoProduto, int produtoID)
     {
         // URL da pesquisa no Mercado Livre com base na descrição do produto
         string url = $"https://lista.mercadolivre.com.br/{descricaoProduto}";
@@ -25,7 +25,7 @@ public class MercadoScrap
             // Verifica se o elemento foi encontrado
             if (MercadoPrecoNode != null)
             {
-                Scrap mercado = new Scrap();
+                ScrapMercado mercado = new ScrapMercado();
                 string MercadoPreco = MercadoPrecoNode.InnerText.Trim();
                 string MercadoLink = firstProductUrlNode.GetAttributeValue("href", "");                
                 mercado.preco = MercadoPreco;
@@ -61,7 +61,7 @@ public class MercadoScrap
         using (var context = new CrawlerContext())
         {
             var log = new Log
-            { CodRobot = CodRobot, UserName = UserName, LogDate = logDate, StateDescription = StateDescription, ResultFeedBack = ResultFeedBack, ProductID = ProductID };
+            { CodigoRobo = CodRobot, UsuarioRobo = UserName, DateLog = logDate, Etapa = StateDescription, InformacaoLog = ResultFeedBack, IdProdutoAPI = ProductID };
             context.Logs.Add(log);
             context.SaveChanges();
         }

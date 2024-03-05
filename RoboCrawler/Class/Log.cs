@@ -3,11 +3,11 @@
 public class Log
 {
     [Key]
-    public int IdLog { get; set; }
-    public string CodRobot { get; set; }
-    public string UserName { get; set; }
-    public DateTime LogDate { get; set; }
-    public string  StateDescription { get; set; }
-    public string ResultFeedBack { get; set; }
-    public int ProductID { get; set; }
+    public int iDlOG { get; set; }
+    public string CodigoRobo { get; set; }
+    public string UsuarioRobo { get; set; }
+    public DateTime DateLog { get; set; }
+    public string Etapa { get; set; }
+    public string InformacaoLog { get; set; }
+    public int IdProdutoAPI { get; set; }
 }

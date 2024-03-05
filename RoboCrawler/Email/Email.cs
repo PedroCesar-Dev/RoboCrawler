@@ -1,20 +1,18 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Net.Mail;
 using HtmlAgilityPack;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium;
-using static System.Net.WebRequestMethods;
+
 
 public class Email
 {
-    public static void EnviarEmail(string nomeProdutoMercadoLivre, string precoProdutoMercadoLivre, string nomeProdutoMagazineLuiza, string precoProdutoMagazineLuiza, int compareReturn)
+    public static void EnviarEmail(string nomeProdutoMercadoLivre, string precoProdutoMercadoLivre, string nomeProdutoMagazineLuiza, string precoProdutoMagazineLuiza, int compareReturn, string hrefMercado, string hrefMagazine, string destino)
     {
         HtmlWeb web = new HtmlWeb();
         string smtpServer = "smtp-mail.outlook.com";
         int port = 587;
         string login = "pedrocesar.senai.teste@outlook.com";
         string senha = "c6o36-u52b30";
+        string emailDestino = destino;
 
         using (SmtpClient client = new SmtpClient(smtpServer, port))
         {
@@ -25,9 +23,6 @@ public class Email
 
             if (compareReturn == 1)
             {
-                var urlMod = nomeProdutoMercadoLivre.Replace(' ', 'þ');
-                var url = $"https://lista.mercadolivre.com.br/{urlMod}";
-                
                 MailMessage mensagem = new MailMessage(login, "pedro9563@hotmail.com")
                 {
                     Subject = "Resultado da comparação de preços",
@@ -44,7 +39,7 @@ public class Email
 
                             
                             <h1>Melhor compra</h1>
-                            <a href='{hyperlink}'>Clique aqui: Mercado Livre</a>                         
+                            <a href={hrefMercado}>Clique aqui: Mercado Livre</a>                         
                         </body>
                         </html>
                         "
@@ -54,10 +49,7 @@ public class Email
                 Console.WriteLine("Email enviado com sucesso");
             }            
             else if (compareReturn == 2)
-            {
-                var urlMod = nomeProdutoMagazineLuiza.Replace(' ', '+');
-                var url = $"https://lista.mercadolivre.com.br/{urlMod}";
-                
+            {                
                 MailMessage mensagem = new MailMessage(login, "pedro9563@hotmail.com")
                 {
                     Subject = "Resultado da comparação de preços",
@@ -74,7 +66,7 @@ public class Email
 
                             
                             <h1>Melhor compra</h1>
-                            <a href='{hyperlink}'>Clique aqui: Magazine Luiza</a>                         
+                            <a href={hrefMagazine}>Clique aqui: Magazine Luiza</a>                         
                         </body>
                         </html>
                         "
@@ -87,7 +79,6 @@ public class Email
 
             else if (compareReturn == 3)
             {
-
                 MailMessage mensagem = new MailMessage(login, "pedro9563@hotmail.com")
                 {
                     Subject = "Resultado da comparação de preços",
@@ -105,12 +96,11 @@ public class Email
                             
                             <h1>Melhor compra</h1>
                             <p>Aviso: Ambas compras possuem o mesmo preço</p>
-                            <a href='{hyperlinkMercado}'>Clique aqui: Mercado Livre</a>  
-                            <a href='{hyperlinkMagazine}'>Clique aqui: Magazine Luiza</a>                      
+                            <a href={hrefMercado}>Clique aqui: Mercado Livre</a>  
+                            <a href={hrefMagazine}>Clique aqui: Magazine Luiza</a>                      
                         </body>
                         </html>
                         "
-
                 };
                 mensagem.IsBodyHtml = true;
                 client.Send(mensagem);

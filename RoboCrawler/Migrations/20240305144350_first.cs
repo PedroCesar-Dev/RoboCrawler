@@ -13,18 +13,18 @@ namespace RoboCrawler.Migrations
                 name: "Logs",
                 columns: table => new
                 {
-                    IdLog = table.Column<int>(type: "int", nullable: false)
+                    iDlOG = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CodRobot = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LogDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    StateDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ResultFeedBack = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductID = table.Column<int>(type: "int", nullable: false)
+                    CodigoRobo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UsuarioRobo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateLog = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Etapa = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    InformacaoLog = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IdProdutoAPI = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Logs", x => x.IdLog);
+                    table.PrimaryKey("PK_Logs", x => x.iDlOG);
                 });
         }
 

@@ -1,24 +1,17 @@
 ﻿using System.Net.Http.Headers;
 using System.Text;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System.ComponentModel.DataAnnotations;
 
 class Program 
 {
     static List<Produto> produtosVerificados = new List<Produto>();
     static void Main(string[] args)
     {
-        int interval = 6000;
+        registrarEmail.Registrar();
+        int interval = 300000;
 
         Timer timer = new Timer(verificar, null, 0, interval);
-
+        
         Console.WriteLine("Pressione qualquer tecla para sair...");
         Console.ReadKey();
     }
@@ -27,7 +20,7 @@ class Program
             string username = "11164448";
             string password = "60-dayfreetrial";
             string url = "http://regymatrix-001-site1.ktempurl.com/api/v1/produto/getall";
-
+            
             try {
                 using (HttpClient client = new HttpClient())
                 {
@@ -51,14 +44,14 @@ class Program
                                     WriteLog("0001", "Pedro", DateTime.Now, "API Consulta - 001-site 1.ktempurl.com/api/v1/produto/getall", "Sucesso", produto.Id);
 
                                     MercadoScrap mercadoScraper = new MercadoScrap();
-                                    var mercadoLivrePreco = mercadoScraper.ObterPreco(produto.Nome, produto.Id);
+                                    var mercadoLivre = mercadoScraper.ObterPreco(produto.Nome, produto.Id);
                                     
                                     MagazineScrap magazineScraper = new MagazineScrap();
-                                    var magazineLuizaPreco = magazineScraper.ObterPreco(produto.Nome, produto.Id);                                    
+                                    var magazineLuiza = magazineScraper.ObterPreco(produto.Nome, produto.Id);                                    
                                     
-                                    var compareReturn = Compare.comparePrice(mercadoLivrePreco.preco, magazineLuizaPreco, produto.Id);
-
-                                    Email.EnviarEmail(produto.Nome, mercadoLivrePreco.preco, produto.Nome, magazineLuizaPreco, compareReturn);
+                                    var compareReturn = Compare.comparePrice(mercadoLivre.preco, magazineLuiza.preco, produto.Id);
+                                    string Destino = File.ReadAllText("emailRegistro.txt");
+                                    Email.EnviarEmail(produto.Nome, mercadoLivre.preco, produto.Nome, magazineLuiza.preco, compareReturn, mercadoLivre.hrefUrl, magazineLuiza.hrefUrl, Destino);
                                 }
                                 
                             }
@@ -73,17 +66,15 @@ class Program
     }
     static List<Produto> ObterNovosProdutos(string responseData)
     {
-        // Desserializar os dados da resposta para uma lista de produtos
         List<Produto> produtos = JsonConvert.DeserializeObject<List<Produto>>(responseData);
         return produtos;
     }
 
-    // Método para verificar se o produto já foi registrado no banco de dados
     static bool ProdutoJaRegistrado(int ProductID)
     {
         using (var context = new CrawlerContext())
         {
-            return context.Logs.Any(log => log.IdLog == ProductID);
+            return context.Logs.Any(log => log.iDlOG == ProductID);
         }
     }
     
@@ -92,7 +83,7 @@ class Program
         using (var context = new CrawlerContext())
         {
             var log = new Log
-            { CodRobot = CodRobot,UserName = UserName,LogDate = logDate, StateDescription = StateDescription, ResultFeedBack = ResultFeedBack, ProductID = ProductID };          
+            { CodigoRobo = CodRobot,UsuarioRobo = UserName,DateLog = logDate, Etapa = StateDescription, InformacaoLog = ResultFeedBack, IdProdutoAPI = ProductID };          
             context.Logs.Add(log);
             context.SaveChanges();
         }

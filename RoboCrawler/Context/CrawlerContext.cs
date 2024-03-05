@@ -6,6 +6,6 @@ public class CrawlerContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Data Source=PC03LAB2511\\SENAI; database=scrap_db; User Id=sa; Password=senai.123");
+        optionsBuilder.UseSqlServer("Data Source=PC03LAB2512; Database=Webscraping; User Id=sa; Password=senai.123;") ;
     }
 }

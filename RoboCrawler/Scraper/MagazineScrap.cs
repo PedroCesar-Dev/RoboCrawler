@@ -4,7 +4,7 @@ using System;
 
 public class MagazineScrap 
 {
-    public Scrap ObterPreco(string descricaoProduto, int produtoID)
+    public ScrapMagazine ObterPreco(string descricaoProduto, int produtoID)
     {
         try
         {
@@ -20,15 +20,11 @@ public class MagazineScrap
 
                 if (priceElement != null)
                 {
-                    string Magazine = priceElement.Text; 
-                    Scrap magazine = new Scrap();
-                    magazine.preco = Magazine;
+                    ScrapMagazine magazine = new ScrapMagazine();
+                    magazine.preco = priceElement.Text;
                     magazine.hrefUrl = urlElement.GetAttribute("href");
                     MagazineLog("0001", "Pedro", DateTime.Now, "Web Scraping - Magazine Luiza", "Sucesso", produtoID);
 
-
-
-                    // Retorna o preço
                     return magazine;
                 }
                 else
@@ -59,7 +55,7 @@ public class MagazineScrap
         using (var context = new CrawlerContext())
         {
             var log = new Log
-            { CodRobot = CodRobot, UserName = UserName, LogDate = logDate, StateDescription = StateDescription, ResultFeedBack = ResultFeedBack, ProductID = ProductID };
+            { CodigoRobo = CodRobot, UsuarioRobo = UserName, DateLog = logDate, Etapa = StateDescription, InformacaoLog = ResultFeedBack, IdProdutoAPI = ProductID };
             context.Logs.Add(log);
             context.SaveChanges();
         }

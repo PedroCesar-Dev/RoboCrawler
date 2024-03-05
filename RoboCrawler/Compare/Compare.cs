@@ -31,7 +31,7 @@
         using (var context = new CrawlerContext())
         {
             var log = new Log
-            { CodRobot = CodRobot, UserName = UserName, LogDate = logDate, StateDescription = StateDescription, ResultFeedBack = ResultFeedBack, ProductID = ProductID };
+            { CodigoRobo = CodRobot, UsuarioRobo = UserName, DateLog = logDate, Etapa = StateDescription, InformacaoLog = ResultFeedBack, IdProdutoAPI = ProductID };
             context.Logs.Add(log);
             context.SaveChanges();
         }

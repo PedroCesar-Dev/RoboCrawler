@@ -23,35 +23,35 @@ namespace RoboCrawler.Migrations
 
             modelBuilder.Entity("Log", b =>
                 {
-                    b.Property<int>("IdLog")
+                    b.Property<int>("iDlOG")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdLog"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("iDlOG"), 1L, 1);
 
-                    b.Property<string>("CodRobot")
+                    b.Property<string>("CodigoRobo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("LogDate")
+                    b.Property<DateTime>("DateLog")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ProductID")
+                    b.Property<string>("Etapa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdProdutoAPI")
                         .HasColumnType("int");
 
-                    b.Property<string>("ResultFeedBack")
+                    b.Property<string>("InformacaoLog")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StateDescription")
+                    b.Property<string>("UsuarioRobo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdLog");
+                    b.HasKey("iDlOG");
 
                     b.ToTable("Logs");
                 });
