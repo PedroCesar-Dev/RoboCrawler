@@ -11,18 +11,18 @@
 
         if ( MercadoPrecoComparado < MagazinePrecoComparado)
         {
-            BenchmarkLog("0001", "Pedro", DateTime.Now, "Benchmarking", "Sucesso", id);
+            BenchmarkLog("9563", "Pedro", DateTime.Now, "Benchmarking", "Sucesso", id);
             return 1;
             
         } 
         else if (MercadoPrecoComparado > MagazinePrecoComparado) 
         {
-            BenchmarkLog("0001", "Pedro", DateTime.Now, "Benchmarking", "Sucesso", id);
+            BenchmarkLog("9563", "Pedro", DateTime.Now, "Benchmarking", "Sucesso", id);
             return 2;
         }
         else
         {
-            BenchmarkLog("0001", "Pedro", DateTime.Now, "Benchmarking", "Alerta", id);
+            BenchmarkLog("9563", "Pedro", DateTime.Now, "Benchmarking", "Alerta", id);
             return 3;
         }
     }

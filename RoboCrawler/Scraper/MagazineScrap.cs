@@ -23,7 +23,7 @@ public class MagazineScrap
                     ScrapMagazine magazine = new ScrapMagazine();
                     magazine.preco = priceElement.Text;
                     magazine.hrefUrl = urlElement.GetAttribute("href");
-                    MagazineLog("0001", "Pedro", DateTime.Now, "Web Scraping - Magazine Luiza", "Sucesso", produtoID);
+                    MagazineLog("9563", "Pedro", DateTime.Now, "Web Scraping - Magazine Luiza", "Sucesso", produtoID);
 
                     return magazine;
                 }
@@ -32,7 +32,7 @@ public class MagazineScrap
                     Console.WriteLine("Preço não encontrado.");
 
                     // Registra o log com o ID do produto
-                    MagazineLog("0001", "Pedro", DateTime.Now, "Web Scraping - Magazine Luiza", "Preço não encontrado", produtoID);
+                    MagazineLog("9563", "Pedro", DateTime.Now, "Web Scraping - Magazine Luiza", "Preço não encontrado", produtoID);
 
                     return null;
                 }
@@ -43,7 +43,7 @@ public class MagazineScrap
             Console.WriteLine($"Erro ao acessar a página: {ex.Message}");
 
             // Registra o log com o ID do produto
-            MagazineLog("0001", "Pedro", DateTime.Now, "Web Scraping Magazine - Luiza", $"Erro: {ex.Message}", produtoID);
+            MagazineLog("9563", "Pedro", DateTime.Now, "Web Scraping Magazine - Luiza", $"Erro: {ex.Message}", produtoID);
 
             return null;
         }

@@ -41,7 +41,7 @@ class Program
                                 produtosVerificados.Add(produto);
                                 if(!ProdutoJaRegistrado(produto.Id))
                                 {
-                                    WriteLog("0001", "Pedro", DateTime.Now, "API Consulta - 001-site 1.ktempurl.com/api/v1/produto/getall", "Sucesso", produto.Id);
+                                    WriteLog("9563", "Pedro", DateTime.Now, "API Consulta - 001-site 1.ktempurl.com/api/v1/produto/getall", "Sucesso", produto.Id);
 
                                     MercadoScrap mercadoScraper = new MercadoScrap();
                                     var mercadoLivre = mercadoScraper.ObterPreco(produto.Nome, produto.Id);
@@ -64,6 +64,7 @@ class Program
                 Console.WriteLine($"Erro ao fazer a requisição: {ex.Message}");
             }
     }
+
     static List<Produto> ObterNovosProdutos(string responseData)
     {
         List<Produto> produtos = JsonConvert.DeserializeObject<List<Produto>>(responseData);
@@ -74,7 +75,7 @@ class Program
     {
         using (var context = new CrawlerContext())
         {
-            return context.Logs.Any(log => log.iDlOG == ProductID);
+            return context.Logs.Any(log => log.iDlOG == ProductID && log.CodigoRobo == "9563");
         }
     }
     
