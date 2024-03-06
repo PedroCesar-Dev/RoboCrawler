@@ -32,7 +32,7 @@
         {
             var log = new Log
             { CodigoRobo = CodRobot, UsuarioRobo = UserName, DateLog = logDate, Etapa = StateDescription, InformacaoLog = ResultFeedBack, IdProdutoAPI = ProductID };
-            context.Logs.Add(log);
+            context.LOGROBO.Add(log);
             context.SaveChanges();
         }
     }
