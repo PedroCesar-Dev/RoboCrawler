@@ -31,7 +31,7 @@ public class MercadoScrap
                 mercado.preco = MercadoPreco;
                 mercado.hrefUrl = MercadoLink;
                 
-                MercadoLog("9563", "Pedro", DateTime.Now, "Web Scraping - Mercado Livre", "Sucesso", produtoID);
+                MercadoLog("0001", "Pedro", DateTime.Now, "Web Scraping - Mercado Livre", "Sucesso", produtoID);
 
                 return mercado;
             }
@@ -40,7 +40,7 @@ public class MercadoScrap
                 Console.WriteLine("Preço não encontrado.");
 
                 // Registra o log com o ID do produto
-                MercadoLog("9563", "Pedro", DateTime.Now, "Web Scraping - Mercado Livre", "Preço não encontrado", produtoID);
+                MercadoLog("0001", "Pedro", DateTime.Now, "Web Scraping - Mercado Livre", "Preço não encontrado", produtoID);
 
                 return null;
             }
@@ -50,7 +50,7 @@ public class MercadoScrap
             Console.WriteLine($"Erro ao acessar a página: {ex.Message}");
 
             // Registra o log com o ID do produto
-            MercadoLog("9563", "Pedro", DateTime.Now, "Web Scraping - Mercado Livre", $"Erro: {ex.Message}", produtoID);
+            MercadoLog("0001", "Pedro", DateTime.Now, "Web Scraping - Mercado Livre", $"Erro: {ex.Message}", produtoID);
 
             return null;
         }
@@ -62,7 +62,7 @@ public class MercadoScrap
         {
             var log = new Log
             { CodigoRobo = CodRobot, UsuarioRobo = UserName, DateLog = logDate, Etapa = StateDescription, InformacaoLog = ResultFeedBack, IdProdutoAPI = ProductID };
-            context.Logs.Add(log);
+            context.LOGROBO.Add(log);
             context.SaveChanges();
         }
     }
