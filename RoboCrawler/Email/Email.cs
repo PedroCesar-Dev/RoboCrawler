@@ -23,7 +23,7 @@ public class Email
 
             if (compareReturn == 1)
             {
-                MailMessage mensagem = new MailMessage(login, "pedro9563@hotmail.com")
+                MailMessage mensagem = new MailMessage(login, emailDestino)
                 {
                     Subject = "Resultado da comparação de preços",
                     Body =
@@ -50,7 +50,7 @@ public class Email
             }            
             else if (compareReturn == 2)
             {                
-                MailMessage mensagem = new MailMessage(login, "pedro9563@hotmail.com")
+                MailMessage mensagem = new MailMessage(login, emailDestino)
                 {
                     Subject = "Resultado da comparação de preços",
                     Body =
@@ -79,7 +79,7 @@ public class Email
 
             else if (compareReturn == 3)
             {
-                MailMessage mensagem = new MailMessage(login, "pedro9563@hotmail.com")
+                MailMessage mensagem = new MailMessage(login, emailDestino)
                 {
                     Subject = "Resultado da comparação de preços",
                     Body =
