@@ -10,8 +10,8 @@ public class Email
         HtmlWeb web = new HtmlWeb();
         string smtpServer = "smtp-mail.outlook.com";
         int port = 587;
-        string login = "pedrocesar.senai.teste@outlook.com";
-        string senha = "c6o36-u52b30";
+        string login = "";
+        string senha = "";
         string emailDestino = destino;
 
         using (SmtpClient client = new SmtpClient(smtpServer, port))
